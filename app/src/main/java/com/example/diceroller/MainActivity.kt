@@ -11,10 +11,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val rollButton: Button = findViewById(R.id.button)
-        rollButton.setOnClickListener { rollDice() }
+        rollButton.setOnClickListener {
+            rollDice()
+            rollDice2()
+        }
 
 //        Do a dice roll when the app starts
         rollDice()
+        rollDice2()
 
 
     }
@@ -28,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         val dice = Dice(6)
         val diceRoll = dice.roll()
 //        Find the ImageView in the layout
-        val diceImage: ImageView = findViewById(R.id.imageView2)
+        val diceImage: ImageView = findViewById(R.id.imageView3)
 //            This code calls the `setImageResource()` method on the `ImageView`, passing the resource ID for the `dice_2` image. This will update the `ImageView` on screen to display the `dice_2` image.
 //        diceImage.setImageResource(R.drawable.dice_1)
 
@@ -44,6 +48,23 @@ class MainActivity : AppCompatActivity() {
 //        Update the ImageView with the correct drawable resource ID
         diceImage.setImageResource(drawableResource)
         diceImage.contentDescription = diceRoll.toString()
+
+    }
+    private fun rollDice2(){
+        val dice2 = Dice(6)
+        val diceRoll2 = dice2.roll()
+        val diceImage2: ImageView = findViewById(R.id.imageView2)
+
+        val drawableResource2 =  when(diceRoll2){
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
+        }
+        diceImage2.setImageResource(drawableResource2)
+        diceImage2.contentDescription = diceRoll2.toString()
 
     }
 }
